@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/static/(.*)",
-      "destination": "/static/"
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
     },
     {
-      "source": "/css/(.*)",
-      "destination": "/css/"
+      "src": "/css/(.*)",
+      "dest": "/css/$1"
     },
     {
-      "source": "/js/(.*)",
-      "destination": "/js/"
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api/index.py"
+      "src": "/(.*)",
+      "dest": "api/index.py"
     }
   ]
 }
