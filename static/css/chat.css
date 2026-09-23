@@ -1,0 +1,361 @@
+/* 
+   UrbanAdvisor AI - Real Estate Market Advisory Chatbot
+   Ultra-Max Luxury Theme Adaptive Styling
+*/
+
+.advisor-floating-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9990;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--primary));
+    color: #ffffff !important;
+    border: 1px solid var(--border-luxury);
+    padding: 12px 20px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--primary-glow);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.advisor-floating-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px var(--primary-glow);
+}
+
+.advisor-btn-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.advisor-online-badge {
+    width: 9px;
+    height: 9px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+/* Chat Drawer Container */
+.advisor-chat-drawer {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    width: 420px;
+    max-width: calc(100vw - 32px);
+    height: 600px;
+    max-height: calc(100vh - 120px);
+    background: var(--bg-card);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--border-luxury);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 35px var(--gold-glow);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+    animation: drawerFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes drawerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.advisor-chat-drawer.active {
+    display: flex;
+}
+
+/* Header */
+.advisor-chat-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.advisor-header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.advisor-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--gold), #d97706);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px var(--gold-glow);
+}
+
+.advisor-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.advisor-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.advisor-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.advisor-action-btn {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.advisor-action-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+}
+
+/* Active Valuation Context Bar */
+.advisor-context-banner {
+    background: var(--bg-glass);
+    border-bottom: 1px solid var(--border-luxury);
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Messages Body */
+.advisor-messages-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    scroll-behavior: smooth;
+    background: var(--bg-primary);
+}
+
+.advisor-msg {
+    display: flex;
+    flex-direction: column;
+    max-width: 86%;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.advisor-msg.user {
+    align-self: flex-end;
+}
+
+.advisor-msg.user .msg-bubble {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #ffffff;
+    border-radius: 16px 16px 4px 16px;
+    padding: 10px 16px;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.advisor-msg.assistant {
+    align-self: flex-start;
+}
+
+.advisor-msg.assistant .msg-bubble {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    border-radius: 16px 16px 16px 4px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.advisor-msg.assistant .msg-bubble p {
+    margin-bottom: 8px;
+}
+
+.advisor-msg.assistant .msg-bubble p:last-child {
+    margin-bottom: 0;
+}
+
+.advisor-msg.assistant .msg-bubble strong {
+    color: var(--gold);
+}
+
+.msg-time {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+    padding: 0 4px;
+}
+
+.advisor-msg.user .msg-time {
+    text-align: right;
+}
+
+/* Typing Indicator */
+.typing-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 0;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+/* Quick Suggestion Chips */
+.advisor-suggestion-chips {
+    padding: 8px 16px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-top: 1px solid var(--border-glass);
+    background: var(--bg-secondary);
+}
+
+.advisor-suggestion-chips::-webkit-scrollbar {
+    display: none;
+}
+
+.advisor-chip {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-luxury);
+    color: var(--text-main);
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.advisor-chip:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+/* Input Footer */
+.advisor-chat-footer {
+    padding: 14px 16px;
+    border-top: 1px solid var(--border-glass);
+    background: var(--bg-secondary);
+}
+
+.advisor-input-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.advisor-input {
+    flex: 1;
+    background: var(--bg-input);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.advisor-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.advisor-send-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow: 0 4px 14px var(--primary-glow);
+    transition: var(--transition);
+}
+
+.advisor-send-btn:hover {
+    transform: scale(1.05);
+}
+
+.advisor-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .advisor-chat-drawer {
+        bottom: 80px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+        height: 520px;
+    }
+}

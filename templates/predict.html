@@ -1,0 +1,585 @@
+{% extends "base.html" %}
+
+{% block title %}Property Valuation Studio | UrbanValuate Luxury Real Estate{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 2.5rem 1.5rem 5rem;">
+    
+    <!-- Page Header -->
+    <div style="margin-bottom: 2rem;">
+        <span class="hero-pill" style="margin-bottom: 0.75rem;"><i class="bi bi-patch-check-fill text-gold"></i> Certified Valuation Studio</span>
+        <h1 style="font-size: 2.6rem; font-weight: 850; letter-spacing: -0.03em; color: var(--text-main);">Property Market Valuation Studio</h1>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px;">
+            Input your property specifications below or select an executive sample profile to calculate fair market value, rental yields, and a 5-year growth forecast.
+        </p>
+    </div>
+
+    <!-- Quick Presets Demo Showcase with Architectural Imagery -->
+    <div style="margin-bottom: 2.5rem;">
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i class="bi bi-magic text-gold"></i> Select an Executive Property Profile to Auto-Fill & Appraise:
+        </div>
+        <div class="preset-cards-grid">
+            
+            <!-- Preset 1: Luxury Villa -->
+            <div class="preset-card active" data-preset="luxury" id="presetLuxury">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Cyber City Executive Villa" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge"><i class="bi bi-gem text-gold"></i> Luxury Villa</span>
+                    <span class="property-price-chip">₹1.15 Cr</span>
+                </div>
+                <div class="preset-card-top">
+                    <span class="preset-badge">Tech Park Cyber City</span>
+                    <i class="bi bi-check-circle-fill text-gold" style="font-size: 1.1rem;"></i>
+                </div>
+                <div class="preset-name">Cyber City Executive Villa</div>
+                <div class="preset-meta">
+                    <span><i class="bi bi-aspect-ratio text-primary"></i> 7,420 sq ft</span>
+                    <span>•</span>
+                    <span>4 BHK • 3 Bath • Furnished</span>
+                </div>
+            </div>
+
+            <!-- Preset 2: Suburban Residence -->
+            <div class="preset-card" data-preset="suburban" id="presetSuburban">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" alt="Suburban Family Residence" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: #6ee7b7;"><i class="bi bi-house-door"></i> Family Manor</span>
+                    <span class="property-price-chip">₹55.2 L</span>
+                </div>
+                <div class="preset-card-top">
+                    <span class="preset-badge">Suburban North</span>
+                    <i class="bi bi-check-circle-fill" style="font-size: 1.1rem; color: var(--text-dim);"></i>
+                </div>
+                <div class="preset-name">Suburban Family Residence</div>
+                <div class="preset-meta">
+                    <span><i class="bi bi-aspect-ratio text-primary"></i> 3,600 sq ft</span>
+                    <span>•</span>
+                    <span>3 BHK • 1 Bath • Semi-Furnished</span>
+                </div>
+            </div>
+
+            <!-- Preset 3: Penthouse Duplex -->
+            <div class="preset-card" data-preset="penthouse" id="presetPenthouse">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" alt="Downtown Penthouse Duplex" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: var(--gold);"><i class="bi bi-building"></i> Skyline Duplex</span>
+                    <span class="property-price-chip">₹1.48 Cr</span>
+                </div>
+                <div class="preset-card-top">
+                    <span class="preset-badge">Downtown Central</span>
+                    <i class="bi bi-check-circle-fill" style="font-size: 1.1rem; color: var(--text-dim);"></i>
+                </div>
+                <div class="preset-name">Downtown Penthouse Duplex</div>
+                <div class="preset-meta">
+                    <span><i class="bi bi-aspect-ratio text-primary"></i> 8,960 sq ft</span>
+                    <span>•</span>
+                    <span>4 BHK • 4 Bath • 4 Floors</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid: Form + Live Valuation Certificate -->
+    <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2rem; align-items: start;">
+        
+        <!-- Left: User-Friendly Step Form -->
+        <div class="glass-card" style="padding: 2.25rem;">
+            <form id="predictionForm">
+                
+                <!-- STEP 1: Location & Dimensions -->
+                <div class="form-step-section">
+                    <div class="step-indicator-title">
+                        <div class="step-num-badge">1</div>
+                        <span>Location & Carpet Dimensions</span>
+                    </div>
+
+                    <!-- Location Dropdown -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="locationSelect" style="display: block; font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+                            <i class="bi bi-geo-alt-fill text-primary me-1"></i> Select Prime Locality / Zone
+                        </label>
+                        <select class="form-control" id="locationSelect" required style="font-size: 1rem; padding: 14px 18px;">
+                            <optgroup label="Prime Commercial & Tech Corridors">
+                                <option value="Tech Park Cyber City" selected>Tech Park Cyber City (IT & Fintech Hub)</option>
+                                <option value="Downtown Central">Downtown Central (Prime Metropolitan Core)</option>
+                                <option value="Riverside Bay">Riverside Bay (Waterfront Luxury Corridor)</option>
+                            </optgroup>
+                            <optgroup label="Established Residential Townships">
+                                <option value="Suburban North">Suburban North (Family Township)</option>
+                                <option value="West Greens">West Greens (Eco-Residential Sanctuary)</option>
+                                <option value="East Expressway">East Expressway (Developing Logistics Corridor)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Carpet Area with Steppers -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <label style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">
+                                <i class="bi bi-aspect-ratio text-gold me-1"></i> Carpet / Plot Area (Square Feet)
+                            </label>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--gold);" id="areaDisplay">7,420 sq ft</span>
+                        </div>
+
+                        <!-- Stepper Buttons + Number Input -->
+                        <div class="area-stepper-wrap">
+                            <button type="button" class="stepper-btn" id="btnMinusArea" title="Decrease by 500 sq ft">
+                                <i class="bi bi-dash-lg"></i>
+                            </button>
+                            <input type="number" class="area-number-input" id="areaInput" min="500" max="18000" step="50" value="7420">
+                            <button type="button" class="stepper-btn" id="btnPlusArea" title="Increase by 500 sq ft">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                            <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">sq ft</span>
+                        </div>
+
+                        <!-- Smooth Range Slider -->
+                        <input type="range" class="range-slider" id="areaRange" min="800" max="15000" step="50" value="7420">
+                    </div>
+                </div>
+
+                <!-- STEP 2: Structural Rooms & Layout -->
+                <div class="form-step-section">
+                    <div class="step-indicator-title">
+                        <div class="step-num-badge">2</div>
+                        <span>Room Configurations & Structure</span>
+                    </div>
+
+                    <!-- Bedrooms & Bathrooms Row -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+                                <i class="bi bi-door-open-fill text-primary me-1"></i> Bedrooms (BHK)
+                            </label>
+                            <div class="pill-grid">
+                                <label class="pill-card">
+                                    <input type="radio" name="bedrooms" value="1">
+                                    <div class="pill-card-label">1</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bedrooms" value="2">
+                                    <div class="pill-card-label">2</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bedrooms" value="3">
+                                    <div class="pill-card-label">3</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bedrooms" value="4" checked>
+                                    <div class="pill-card-label">4</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bedrooms" value="5">
+                                    <div class="pill-card-label">5+</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+                                <i class="bi bi-droplet-half text-primary me-1"></i> Bathrooms
+                            </label>
+                            <div class="pill-grid">
+                                <label class="pill-card">
+                                    <input type="radio" name="bathrooms" value="1">
+                                    <div class="pill-card-label">1</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bathrooms" value="2">
+                                    <div class="pill-card-label">2</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bathrooms" value="3" checked>
+                                    <div class="pill-card-label">3</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="bathrooms" value="4">
+                                    <div class="pill-card-label">4</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stories & Parking Row -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+                                <i class="bi bi-building text-primary me-1"></i> Stories / Floors
+                            </label>
+                            <div class="pill-grid">
+                                <label class="pill-card">
+                                    <input type="radio" name="stories" value="1">
+                                    <div class="pill-card-label">1</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="stories" value="2">
+                                    <div class="pill-card-label">2</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="stories" value="3" checked>
+                                    <div class="pill-card-label">3</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="stories" value="4">
+                                    <div class="pill-card-label">4</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+                                <i class="bi bi-car-front-fill text-primary me-1"></i> Parking Capacity
+                            </label>
+                            <div class="pill-grid">
+                                <label class="pill-card">
+                                    <input type="radio" name="parking" value="0">
+                                    <div class="pill-card-label">0</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="parking" value="1">
+                                    <div class="pill-card-label">1</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="parking" value="2" checked>
+                                    <div class="pill-card-label">2</div>
+                                </label>
+                                <label class="pill-card">
+                                    <input type="radio" name="parking" value="3">
+                                    <div class="pill-card-label">3</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Furnishing Condition (Visual Cards) -->
+                <div class="form-step-section">
+                    <div class="step-indicator-title">
+                        <div class="step-num-badge">3</div>
+                        <span>Furnishing Condition</span>
+                    </div>
+
+                    <div class="furnishing-grid">
+                        <label class="furnish-card">
+                            <input type="radio" name="furnishingstatus" value="unfurnished">
+                            <div class="furnish-label">
+                                <div class="furnish-icon"><i class="bi bi-box-seam"></i></div>
+                                <div class="furnish-title">Unfurnished</div>
+                                <div class="furnish-sub">Raw shell, requires full interior fit-out.</div>
+                            </div>
+                        </label>
+
+                        <label class="furnish-card">
+                            <input type="radio" name="furnishingstatus" value="semi-furnished">
+                            <div class="furnish-label">
+                                <div class="furnish-icon"><i class="bi bi-lamp"></i></div>
+                                <div class="furnish-title">Semi-Furnished</div>
+                                <div class="furnish-sub">Modular kitchen, wardrobes & ambient lights.</div>
+                            </div>
+                        </label>
+
+                        <label class="furnish-card">
+                            <input type="radio" name="furnishingstatus" value="furnished" checked>
+                            <div class="furnish-label">
+                                <div class="furnish-icon"><i class="bi bi-stars"></i></div>
+                                <div class="furnish-title">Fully Furnished</div>
+                                <div class="furnish-sub">Turnkey designer interiors, move-in state.</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Premium Amenities -->
+                <div class="form-step-section">
+                    <div class="step-indicator-title">
+                        <div class="step-num-badge">4</div>
+                        <span>Premium Features & Location Amenities</span>
+                    </div>
+
+                    <div class="amenities-grid">
+                        <label class="amenity-toggle">
+                            <input type="checkbox" id="mainroadCheck" checked>
+                            <div class="amenity-box">
+                                <i class="bi bi-signpost-2 amenity-icon"></i>
+                                <span class="amenity-name">Main Road Facing</span>
+                            </div>
+                        </label>
+
+                        <label class="amenity-toggle">
+                            <input type="checkbox" id="airconditioningCheck" checked>
+                            <div class="amenity-box">
+                                <i class="bi bi-snow amenity-icon"></i>
+                                <span class="amenity-name">Air Conditioning</span>
+                            </div>
+                        </label>
+
+                        <label class="amenity-toggle">
+                            <input type="checkbox" id="guestroomCheck" checked>
+                            <div class="amenity-box">
+                                <i class="bi bi-people amenity-icon"></i>
+                                <span class="amenity-name">Guest Suite</span>
+                            </div>
+                        </label>
+
+                        <label class="amenity-toggle">
+                            <input type="checkbox" id="basementCheck">
+                            <div class="amenity-box">
+                                <i class="bi bi-layer-backward amenity-icon"></i>
+                                <span class="amenity-name">Private Basement</span>
+                            </div>
+                        </label>
+
+                        <label class="amenity-toggle">
+                            <input type="checkbox" id="hotwaterheatingCheck">
+                            <div class="amenity-box">
+                                <i class="bi bi-fire amenity-icon"></i>
+                                <span class="amenity-name">Hot Water Heating</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" id="predictSubmitBtn" style="width: 100%; padding: 18px; font-size: 1.15rem; border-radius: var(--radius-lg); margin-top: 1rem;">
+                    <i class="bi bi-lightning-charge-fill"></i> Calculate Market Valuation →
+                </button>
+            </form>
+        </div>
+
+        <!-- Right: Official Valuation Certificate -->
+        <div>
+            <div class="valuation-certificate" id="valuationResultCard">
+                
+                <!-- Initial Loading Placeholder -->
+                <div id="resultPlaceholder" style="text-align: center; padding: 4rem 1.5rem;">
+                    <div style="width: 72px; height: 72px; border-radius: 50%; background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem;">
+                        <i class="bi bi-award"></i>
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Synthesizing Comps...</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+                        Benchmarking specifications against verified metropolitan transactions.
+                    </p>
+                </div>
+
+                <!-- Active Valuation Dossier (Populated by JS) -->
+                <div id="resultDetails" style="display: none;">
+                    <div class="cert-header">
+                        <div class="cert-stamp">
+                            <i class="bi bi-patch-check-fill text-gold"></i> Certified Valuation Dossier
+                        </div>
+                        <span style="font-size: 0.78rem; color: var(--text-dim);" id="resModelUsed">Ridge Regression (L2)</span>
+                    </div>
+
+                    <div class="cert-price-hero">
+                        <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Estimated Fair Market Value</div>
+                        <div class="cert-fair-val" id="resPriceInr">₹0.00 L</div>
+                        <div class="cert-usd" id="resPriceUsd">~ $0 USD</div>
+                        <div style="display: inline-block; margin-top: 10px; font-size: 0.82rem; font-weight: 700; color: var(--gold); background: var(--bg-glass); border: 1px solid var(--border-luxury); padding: 4px 14px; border-radius: var(--radius-full);" id="resPriceSqft">
+                            ₹0 / sq ft
+                        </div>
+                    </div>
+
+                    <!-- 3-Tier Valuation Scenario Matrix -->
+                    <div style="margin: 1.25rem 0;">
+                        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; letter-spacing: 0.05em;">
+                            3-Tier Valuation Matrix
+                        </div>
+                        <div class="cert-tiers-row">
+                            <div class="cert-tier-cell">
+                                <div class="lbl">Liquidation</div>
+                                <div class="val" id="resTierLiquidation">₹0.00 L</div>
+                            </div>
+                            <div class="cert-tier-cell highlight">
+                                <div class="lbl" style="color: var(--accent);">Fair Market</div>
+                                <div class="val" style="color: var(--accent);" id="resTierFair">₹0.00 L</div>
+                            </div>
+                            <div class="cert-tier-cell">
+                                <div class="lbl">Peak Optimistic</div>
+                                <div class="val" id="resTierPeak">₹0.00 L</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rental Yield Banner -->
+                    <div class="cert-rental-box">
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Est. Monthly Rent</div>
+                            <div class="cert-rent-num" id="resMonthlyRental">₹0/mo</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="badge-tag badge-winner" id="resRentalYieldPct">4.6% Gross Return</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 8px; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="window.print()" style="flex: 1;" title="Print Official Valuation Certificate">
+                            <i class="bi bi-printer"></i> Print Certificate
+                        </button>
+                        <button type="button" class="btn btn-gold btn-sm" onclick="document.getElementById('advisorFloatingBtn').click()" style="flex: 1;" title="Ask Aarav about this Valuation">
+                            <i class="bi bi-chat-quote-fill"></i> Ask Advisor
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- EXPANDED DETAILED ADVISORY REPORT (Revealed on Valuation) -->
+    <div id="expandedAdvisoryDossier" style="display: none; margin-top: 4rem;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid var(--border-glass); padding-bottom: 1.25rem;">
+            <div>
+                <span class="hero-pill" style="margin-bottom: 0.5rem;"><i class="bi bi-award text-gold"></i> Comprehensive Analysis</span>
+                <h2 style="font-size: 2.2rem; font-weight: 850; letter-spacing: -0.02em; color: var(--text-main);">Property Appraisal & Investment Dossier</h2>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="window.print()">
+                    <i class="bi bi-download"></i> Save Full Dossier (PDF)
+                </button>
+            </div>
+        </div>
+
+        <!-- 1. Senior Surveyor Narrative Memo -->
+        <div class="glass-card" style="margin-bottom: 2rem; border-left: 4px solid var(--gold);">
+            <div style="font-size: 0.78rem; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">
+                <i class="bi bi-briefcase-fill me-1"></i> Senior Chartered Valuation Consultant Memo
+            </div>
+            <p class="cert-memo-text" id="resSurveyorMemo" style="font-size: 0.95rem; line-height: 1.8;">
+                Analyzing property...
+            </p>
+            <div class="cert-memo-sign">
+                <i class="bi bi-patch-check-fill"></i> Investment Advisory Committee • UrbanValuate Capital Markets
+            </div>
+        </div>
+
+        <!-- 2. Neighborhood Development Stage & Civic Scores -->
+        <div class="neighborhood-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <span class="stage-pill" id="resStageBadge">Phase IV: Hyper-Prime IT Corridor</span>
+                    <h3 style="font-size: 1.4rem; font-weight: 850; color: var(--text-main); margin-top: 6px;" id="resStageTitle">
+                        Locality Development Lifecycle & Connectivity
+                    </h3>
+                </div>
+                <div class="text-end">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Development Maturity:</span>
+                    <strong style="color: var(--accent); font-size: 1.1rem; margin-left: 6px;" id="resStageProgressPct">88%</strong>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-track">
+                <div class="progress-bar-fill" id="resStageProgressBar" style="width: 88%;"></div>
+            </div>
+
+            <!-- Score Pills -->
+            <div class="score-pills-row">
+                <div class="score-box">
+                    <div class="num text-accent" id="resTransitScore">9.4/10</div>
+                    <div class="lbl">Transit Connectivity</div>
+                </div>
+                <div class="score-box">
+                    <div class="num" style="color: var(--primary-light);" id="resInfraScore">9.6/10</div>
+                    <div class="lbl">Civic Infrastructure</div>
+                </div>
+                <div class="score-box">
+                    <div class="num text-gold" id="resAvgLocRate">₹14,200</div>
+                    <div class="lbl">Surrounding Avg Rate/sqft</div>
+                </div>
+                <div class="score-box">
+                    <div class="num" style="color: var(--accent);" id="resTenantProfile">Executive</div>
+                    <div class="lbl">Tenant Profile</div>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; margin-top: 1.25rem;">
+                <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;" id="resLocHighlights">
+                    Locality overview loading...
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. Pros & Cons Strategic Decision Matrix -->
+        <div style="margin: 2.5rem 0;">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
+                <h3 style="font-size: 1.5rem; font-weight: 850; color: var(--text-main);">Pros & Cons Strategic Decision Matrix</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    Objective, structural, and commercial appraisal from a home buyer's advisory perspective.
+                </p>
+            </div>
+
+            <div class="pros-cons-grid">
+                <!-- Pros Panel -->
+                <div class="pros-card">
+                    <div class="card-heading">
+                        <i class="bi bi-shield-check"></i> Key Strengths & Value Drivers (Pros)
+                    </div>
+                    <div id="resProsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Cons Panel -->
+                <div class="cons-card">
+                    <div class="card-heading">
+                        <i class="bi bi-exclamation-triangle"></i> Points to Consider & Watch Outs (Cons)
+                    </div>
+                    <div id="resConsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 5-Year Capital Growth Trajectory Chart -->
+        <div class="growth-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem;">
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 850; color: var(--text-main);">
+                        <i class="bi bi-graph-up-arrow text-accent me-2"></i>5-Year Capital Appreciation & Equity Forecast
+                    </h3>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
+                        Forward trajectory modeled on micro-market historical CAGR and commercial absorption rates.
+                    </p>
+                </div>
+                <div>
+                    <span class="badge-tag badge-winner" id="resGrowthScore">Growth Rating: 9.0 / 10</span>
+                </div>
+            </div>
+
+            <div class="growth-chips-grid">
+                <div class="growth-chip">
+                    <div class="num" id="resHistoricalCagr">10.8%</div>
+                    <div class="desc">Historical Micro-Market CAGR</div>
+                </div>
+                <div class="growth-chip">
+                    <div class="num" style="color: var(--text-main);" id="resYear1Val">₹0.00 L</div>
+                    <div class="desc">1-Year Projected Equity</div>
+                </div>
+                <div class="growth-chip">
+                    <div class="num text-accent" id="resYear3Val">₹0.00 L</div>
+                    <div class="desc">3-Year Projected Equity</div>
+                </div>
+                <div class="growth-chip">
+                    <div class="num" style="color: var(--primary-light);" id="resYear5Val">₹0.00 L</div>
+                    <div class="desc">5-Year Projected Equity</div>
+                </div>
+            </div>
+
+            <!-- Projection Chart Canvas -->
+            <div style="position: relative; height: 340px; width: 100%; margin-top: 1rem;">
+                <canvas id="growthForecastChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/predict.js') }}?v=20260924_ultramax_v2"></script>
+{% endblock %}

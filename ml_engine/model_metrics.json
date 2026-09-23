@@ -1,0 +1,408 @@
+{
+  "best_model": "Ridge Regression",
+  "best_r2": 0.659,
+  "best_mae": 960200.18,
+  "best_rmse": 1312796.04,
+  "best_mape": 21.09,
+  "model_comparison": {
+    "Linear Regression": {
+      "r2_score": 0.6589,
+      "mae": 959734.04,
+      "rmse": 1312986.9,
+      "mape": 21.09,
+      "cv_r2_mean": 0.641
+    },
+    "Ridge Regression": {
+      "r2_score": 0.659,
+      "mae": 960200.18,
+      "rmse": 1312796.04,
+      "mape": 21.09,
+      "cv_r2_mean": 0.6414
+    },
+    "Random Forest": {
+      "r2_score": 0.6179,
+      "mae": 1041484.85,
+      "rmse": 1389720.14,
+      "mape": 22.05,
+      "cv_r2_mean": 0.6212
+    },
+    "Gradient Boosting": {
+      "r2_score": 0.6148,
+      "mae": 1007343.98,
+      "rmse": 1395353.2,
+      "mape": 21.44,
+      "cv_r2_mean": 0.5965
+    }
+  },
+  "feature_importance": {
+    "bathrooms": 18.17,
+    "area": 14.44,
+    "stories": 9.35,
+    "airconditioning": 8.26,
+    "amenity_score": 6.69,
+    "bath_bed_ratio": 5.67,
+    "bedrooms": 5.3,
+    "furnishingstatus_code": 4.62,
+    "total_rooms": 4.56,
+    "parking": 3.58,
+    "hotwaterheating": 3.1,
+    "basement": 2.85,
+    "prefarea": 2.49,
+    "loc_Riverside Bay": 2.37,
+    "mainroad": 1.95,
+    "loc_West Greens": 1.8,
+    "loc_East Expressway": 1.42,
+    "loc_Downtown Central": 1.24,
+    "guestroom": 1.02,
+    "loc_Suburban North": 0.79,
+    "loc_Tech Park Cyber City": 0.35
+  },
+  "test_samples": [
+    {
+      "index": 1,
+      "actual": 4060000.0,
+      "predicted": 5202480.0,
+      "error": 1142480.0,
+      "error_pct": 28.14
+    },
+    {
+      "index": 2,
+      "actual": 6650000.0,
+      "predicted": 7327539.0,
+      "error": 677539.0,
+      "error_pct": 10.19
+    },
+    {
+      "index": 3,
+      "actual": 3710000.0,
+      "predicted": 3174327.0,
+      "error": -535673.0,
+      "error_pct": -14.44
+    },
+    {
+      "index": 4,
+      "actual": 6440000.0,
+      "predicted": 4705352.0,
+      "error": -1734648.0,
+      "error_pct": -26.94
+    },
+    {
+      "index": 5,
+      "actual": 2800000.0,
+      "predicted": 3290795.0,
+      "error": 490795.0,
+      "error_pct": 17.53
+    },
+    {
+      "index": 6,
+      "actual": 4900000.0,
+      "predicted": 3523146.0,
+      "error": -1376854.0,
+      "error_pct": -28.1
+    },
+    {
+      "index": 7,
+      "actual": 5250000.0,
+      "predicted": 5633860.0,
+      "error": 383860.0,
+      "error_pct": 7.31
+    },
+    {
+      "index": 8,
+      "actual": 4543000.0,
+      "predicted": 6428309.0,
+      "error": 1885309.0,
+      "error_pct": 41.5
+    },
+    {
+      "index": 9,
+      "actual": 2450000.0,
+      "predicted": 2986776.0,
+      "error": 536776.0,
+      "error_pct": 21.91
+    },
+    {
+      "index": 10,
+      "actual": 3353000.0,
+      "predicted": 2841752.0,
+      "error": -511248.0,
+      "error_pct": -15.25
+    },
+    {
+      "index": 11,
+      "actual": 10150000.0,
+      "predicted": 9604163.0,
+      "error": -545837.0,
+      "error_pct": -5.38
+    },
+    {
+      "index": 12,
+      "actual": 2660000.0,
+      "predicted": 2753931.0,
+      "error": 93931.0,
+      "error_pct": 3.53
+    },
+    {
+      "index": 13,
+      "actual": 3360000.0,
+      "predicted": 3138012.0,
+      "error": -221988.0,
+      "error_pct": -6.61
+    },
+    {
+      "index": 14,
+      "actual": 3360000.0,
+      "predicted": 3273135.0,
+      "error": -86865.0,
+      "error_pct": -2.59
+    },
+    {
+      "index": 15,
+      "actual": 2275000.0,
+      "predicted": 3623432.0,
+      "error": 1348432.0,
+      "error_pct": 59.27
+    },
+    {
+      "index": 16,
+      "actual": 2660000.0,
+      "predicted": 5189571.0,
+      "error": 2529571.0,
+      "error_pct": 95.1
+    },
+    {
+      "index": 17,
+      "actual": 2660000.0,
+      "predicted": 3087624.0,
+      "error": 427624.0,
+      "error_pct": 16.08
+    },
+    {
+      "index": 18,
+      "actual": 7350000.0,
+      "predicted": 4828982.0,
+      "error": -2521018.0,
+      "error_pct": -34.3
+    },
+    {
+      "index": 19,
+      "actual": 2940000.0,
+      "predicted": 4401365.0,
+      "error": 1461365.0,
+      "error_pct": 49.71
+    },
+    {
+      "index": 20,
+      "actual": 2870000.0,
+      "predicted": 3626700.0,
+      "error": 756700.0,
+      "error_pct": 26.37
+    },
+    {
+      "index": 21,
+      "actual": 6720000.0,
+      "predicted": 5746486.0,
+      "error": -973514.0,
+      "error_pct": -14.49
+    },
+    {
+      "index": 22,
+      "actual": 5425000.0,
+      "predicted": 5740341.0,
+      "error": 315341.0,
+      "error_pct": 5.81
+    },
+    {
+      "index": 23,
+      "actual": 1890000.0,
+      "predicted": 2660520.0,
+      "error": 770520.0,
+      "error_pct": 40.77
+    },
+    {
+      "index": 24,
+      "actual": 5250000.0,
+      "predicted": 4854895.0,
+      "error": -395105.0,
+      "error_pct": -7.53
+    },
+    {
+      "index": 25,
+      "actual": 4193000.0,
+      "predicted": 5054595.0,
+      "error": 861595.0,
+      "error_pct": 20.55
+    },
+    {
+      "index": 26,
+      "actual": 12250000.0,
+      "predicted": 7569057.0,
+      "error": -4680943.0,
+      "error_pct": -38.21
+    },
+    {
+      "index": 27,
+      "actual": 3080000.0,
+      "predicted": 3172487.0,
+      "error": 92487.0,
+      "error_pct": 3.0
+    },
+    {
+      "index": 28,
+      "actual": 5110000.0,
+      "predicted": 5150999.0,
+      "error": 40999.0,
+      "error_pct": 0.8
+    },
+    {
+      "index": 29,
+      "actual": 9800000.0,
+      "predicted": 8013347.0,
+      "error": -1786653.0,
+      "error_pct": -18.23
+    },
+    {
+      "index": 30,
+      "actual": 2520000.0,
+      "predicted": 3354792.0,
+      "error": 834792.0,
+      "error_pct": 33.13
+    },
+    {
+      "index": 31,
+      "actual": 6790000.0,
+      "predicted": 6266618.0,
+      "error": -523382.0,
+      "error_pct": -7.71
+    },
+    {
+      "index": 32,
+      "actual": 3500000.0,
+      "predicted": 3392783.0,
+      "error": -107217.0,
+      "error_pct": -3.06
+    },
+    {
+      "index": 33,
+      "actual": 6650000.0,
+      "predicted": 6648170.0,
+      "error": -1830.0,
+      "error_pct": -0.03
+    },
+    {
+      "index": 34,
+      "actual": 2940000.0,
+      "predicted": 4278977.0,
+      "error": 1338977.0,
+      "error_pct": 45.54
+    },
+    {
+      "index": 35,
+      "actual": 3325000.0,
+      "predicted": 3647842.0,
+      "error": 322842.0,
+      "error_pct": 9.71
+    },
+    {
+      "index": 36,
+      "actual": 4200000.0,
+      "predicted": 5806294.0,
+      "error": 1606294.0,
+      "error_pct": 38.25
+    },
+    {
+      "index": 37,
+      "actual": 4900000.0,
+      "predicted": 4929366.0,
+      "error": 29366.0,
+      "error_pct": 0.6
+    },
+    {
+      "index": 38,
+      "actual": 3290000.0,
+      "predicted": 4277541.0,
+      "error": 987541.0,
+      "error_pct": 30.02
+    },
+    {
+      "index": 39,
+      "actual": 3500000.0,
+      "predicted": 3181187.0,
+      "error": -318813.0,
+      "error_pct": -9.11
+    },
+    {
+      "index": 40,
+      "actual": 2380000.0,
+      "predicted": 4587052.0,
+      "error": 2207052.0,
+      "error_pct": 92.73
+    },
+    {
+      "index": 41,
+      "actual": 5495000.0,
+      "predicted": 4493958.0,
+      "error": -1001042.0,
+      "error_pct": -18.22
+    },
+    {
+      "index": 42,
+      "actual": 3675000.0,
+      "predicted": 3455255.0,
+      "error": -219745.0,
+      "error_pct": -5.98
+    },
+    {
+      "index": 43,
+      "actual": 6650000.0,
+      "predicted": 7046951.0,
+      "error": 396951.0,
+      "error_pct": 5.97
+    },
+    {
+      "index": 44,
+      "actual": 4907000.0,
+      "predicted": 4046713.0,
+      "error": -860287.0,
+      "error_pct": -17.53
+    },
+    {
+      "index": 45,
+      "actual": 3150000.0,
+      "predicted": 3592386.0,
+      "error": 442386.0,
+      "error_pct": 14.04
+    }
+  ],
+  "dataset_stats": {
+    "total_samples": 545,
+    "min_price": 1750000.0,
+    "max_price": 13300000.0,
+    "avg_price": 4766729.25,
+    "median_price": 4340000.0,
+    "min_area": 1650.0,
+    "max_area": 16200.0,
+    "avg_area": 5150.54,
+    "locations": [
+      "Downtown Central",
+      "West Greens",
+      "Riverside Bay",
+      "Tech Park Cyber City",
+      "East Expressway",
+      "Suburban North"
+    ],
+    "furnishing_distribution": {
+      "semi-furnished": 227,
+      "unfurnished": 178,
+      "furnished": 140
+    },
+    "bedrooms_distribution": {
+      "3": 300,
+      "2": 136,
+      "4": 95,
+      "5": 10,
+      "6": 2,
+      "1": 2
+    }
+  }
+}

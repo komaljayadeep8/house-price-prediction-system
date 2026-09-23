@@ -1,0 +1,515 @@
+{% extends "base.html" %}
+
+{% block title %}UrbanValuate | Luxury Real Estate Market Valuations & Growth Intelligence{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-pill">
+            <i class="bi bi-patch-check-fill text-gold"></i> Trusted Real Estate Valuation Platform
+        </div>
+        
+        <h1 class="hero-title">
+            Know the True Market Value of Any Home <span class="gradient-text">Before You Make an Offer</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            Instant, data-backed property valuations, 5-year capital appreciation forecasts, 
+            and deep neighborhood growth insights synthesized from 545+ verified metropolitan sales.
+        </p>
+
+        <!-- Quick Valuation Bar -->
+        <form action="/predict" method="GET" class="hero-quick-bar">
+            <div class="quick-bar-field">
+                <label class="quick-bar-label" for="heroLocation"><i class="bi bi-geo-alt-fill text-primary"></i> Select Neighborhood</label>
+                <select name="location" id="heroLocation" class="quick-bar-select">
+                    <option value="Tech Park Cyber City" selected>Tech Park Cyber City</option>
+                    <option value="Downtown Central">Downtown Central (CBD)</option>
+                    <option value="Riverside Bay">Riverside Bay (Waterfront)</option>
+                    <option value="Suburban North">Suburban North</option>
+                    <option value="West Greens">West Greens</option>
+                    <option value="East Expressway">East Expressway</option>
+                </select>
+            </div>
+
+            <div class="quick-bar-divider"></div>
+
+            <div class="quick-bar-field">
+                <label class="quick-bar-label" for="heroArea"><i class="bi bi-aspect-ratio text-gold"></i> Carpet Area (Sq Ft)</label>
+                <input type="number" name="area" id="heroArea" class="quick-bar-input" value="4500" min="500" max="18000" step="100">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="padding: 14px 28px; border-radius: var(--radius-lg); font-size: 1.05rem;">
+                <i class="bi bi-calculator"></i> Value This Property →
+            </button>
+        </form>
+
+        <!-- Trust Stats Banner -->
+        <div class="stat-pills">
+            <div class="stat-pill-card">
+                <div class="stat-icon"><i class="bi bi-database-check"></i></div>
+                <div>
+                    <div class="stat-val">545+ Comps</div>
+                    <div class="stat-lbl">Verified Local Sales</div>
+                </div>
+            </div>
+
+            <div class="stat-pill-card">
+                <div class="stat-icon" style="color: var(--gold);"><i class="bi bi-shield-check"></i></div>
+                <div>
+                    <div class="stat-val">R² = 0.659</div>
+                    <div class="stat-lbl">Empirical Model Accuracy</div>
+                </div>
+            </div>
+
+            <div class="stat-pill-card">
+                <div class="stat-icon" style="color: var(--accent);"><i class="bi bi-graph-up-arrow"></i></div>
+                <div>
+                    <div class="stat-val">5-Year Growth</div>
+                    <div class="stat-lbl">Equity Projections</div>
+                </div>
+            </div>
+
+            <div class="stat-pill-card">
+                <div class="stat-icon" style="color: var(--primary);"><i class="bi bi-file-earmark-text"></i></div>
+                <div>
+                    <div class="stat-val">Chartered Memo</div>
+                    <div class="stat-lbl">Executive Appraisal Dossier</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Luxury Themes Live Switcher Banner -->
+<section style="padding: 2.5rem 0; background: var(--bg-glass); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                    <span class="preset-badge"><i class="bi bi-palette2"></i> Ultra-Max Themes</span>
+                    <span style="font-size: 0.85rem; color: var(--gold); font-weight: 700;">5 Executive Luxury Aesthetics</span>
+                </div>
+                <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 2px;">
+                    Experience High-End Architectural Branding
+                </h3>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+                    Click any aesthetic swatch below to instantaneously transform the entire platform's color palette, lighting, and borders.
+                </p>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="applyTheme('obsidian-gold', true)" title="👑 Royal Obsidian & 24K Gold">
+                    <span class="dock-dot swatch-obsidian" style="width: 14px; height: 14px;"></span> Obsidian Gold
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="applyTheme('champagne-light', true)" title="🏛️ Champagne Pearl (Sotheby's Ivory)">
+                    <span class="dock-dot swatch-champagne" style="width: 14px; height: 14px;"></span> Champagne Pearl
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="applyTheme('sapphire-marina', true)" title="💎 Sapphire Marina (Monaco Blue)">
+                    <span class="dock-dot swatch-sapphire" style="width: 14px; height: 14px;"></span> Sapphire Marina
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="applyTheme('emerald-royale', true)" title="🌿 Emerald Royale (Botanical Estate)">
+                    <span class="dock-dot swatch-emerald" style="width: 14px; height: 14px;"></span> Emerald Royale
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="applyTheme('midnight-amethyst', true)" title="🔮 Midnight Amethyst (Cyber Luxe)">
+                    <span class="dock-dot swatch-amethyst" style="width: 14px; height: 14px;"></span> Midnight Amethyst
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Buyers, Sellers & Investors Choose UrbanValuate -->
+<section style="padding: 4.5rem 0;">
+    <div class="container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 3rem;">
+            <span class="hero-pill" style="margin-bottom: 0.5rem;"><i class="bi bi-star-fill text-gold"></i> Core Advantages</span>
+            <h2 style="font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-main);">Why UrbanValuate Delivers Better Valuations</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">
+                Traditional real estate valuations rely on guesswork. We combine empirical sales comparables with neighborhood development analytics.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <div class="glass-card">
+                <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.25rem;">
+                    <i class="bi bi-houses-fill"></i>
+                </div>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">Bank-Grade Comparative Comps</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    Evaluates nuanced structural attributes including ensuite parity, total room density, multi-level stories, and private parking capacity to deliver an objective fair market range.
+                </p>
+            </div>
+
+            <div class="glass-card">
+                <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.25rem;">
+                    <i class="bi bi-pin-map-fill"></i>
+                </div>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">Neighborhood Lifecycle Tracking</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    Assesses the development phase of your micro-market (Phase I Emerging to Phase V Mature CBD), tracking transit scores, civic infrastructure, and white-collar tenant density.
+                </p>
+            </div>
+
+            <div class="glass-card">
+                <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.25rem;">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">5-Year Equity & Rental Yields</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    Calculates estimated monthly rental income and projects 1-year, 3-year, and 5-year equity gains across conservative, expected, and optimistic market scenarios.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Prime Neighborhoods Showcase with Architectural Photography -->
+<section style="padding: 2rem 0 5rem;">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <span class="hero-pill" style="margin-bottom: 0.5rem;"><i class="bi bi-buildings"></i> Micro-Markets</span>
+                <h2 style="font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-main);">Explore Prime Real Estate Corridors</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem;">
+                    Live benchmark rates, historical CAGR, and rental absorption profiles.
+                </p>
+            </div>
+            <a href="/predict" class="btn btn-secondary">
+                <i class="bi bi-sliders"></i> Open Full Valuation Studio
+            </a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem;">
+            
+            <!-- Cyber City -->
+            <div class="glass-card corridor-card" style="padding: 1.25rem;">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" alt="Tech Park Cyber City Luxury Villa" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge"><i class="bi bi-lightning-charge-fill text-gold"></i> Phase IV • IT Hub</span>
+                    <span class="property-price-chip">₹14,200/sqft</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0;">Tech Park Cyber City</h3>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">+10.8% CAGR</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6;">
+                    High-demand IT and fintech corridor surrounded by Fortune 500 tech campuses, executive villas, and high-rises.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Transit Score</div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-main);">9.2 / 10</div>
+                    </div>
+                    <a href="/predict?location=Tech+Park+Cyber+City&area=7420" class="btn btn-primary btn-sm">
+                        Appraise Here →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Downtown Central -->
+            <div class="glass-card corridor-card" style="padding: 1.25rem;">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Downtown Central Skyline Penthouse" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: var(--gold);"><i class="bi bi-building"></i> Phase V • Mature CBD</span>
+                    <span class="property-price-chip">₹16,800/sqft</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0;">Downtown Central</h3>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">+8.5% CAGR</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6;">
+                    Institutional heritage core with tightest land supply, premier luxury hotels, embassies, and luxury duplexes.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Transit Score</div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-main);">9.6 / 10</div>
+                    </div>
+                    <a href="/predict?location=Downtown+Central&area=8960" class="btn btn-primary btn-sm">
+                        Appraise Here →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Riverside Bay -->
+            <div class="glass-card corridor-card" style="padding: 1.25rem;">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" alt="Riverside Bay Waterfront Luxury" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: #38bdf8;"><i class="bi bi-water"></i> Phase III • Waterfront</span>
+                    <span class="property-price-chip">₹15,500/sqft</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0;">Riverside Bay</h3>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">+11.4% CAGR</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6;">
+                    Scenic coastal promenade, private yacht marinas, and ultra-luxury waterfront penthouses favored by HNIs.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Transit Score</div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-main);">8.7 / 10</div>
+                    </div>
+                    <a href="/predict?location=Riverside+Bay&area=6500" class="btn btn-primary btn-sm">
+                        Appraise Here →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Suburban North -->
+            <div class="glass-card corridor-card" style="padding: 1.25rem;">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80" alt="Suburban North Family Township" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: #6ee7b7;"><i class="bi bi-tree"></i> Phase II • Family Town</span>
+                    <span class="property-price-chip">₹8,900/sqft</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0;">Suburban North</h3>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">+9.6% CAGR</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6;">
+                    Established family township with international academies, community parks, sports arenas, and peaceful avenues.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Transit Score</div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-main);">8.4 / 10</div>
+                    </div>
+                    <a href="/predict?location=Suburban+North&area=3600" class="btn btn-primary btn-sm">
+                        Appraise Here →
+                    </a>
+                </div>
+            </div>
+
+            <!-- West Greens -->
+            <div class="glass-card corridor-card" style="padding: 1.25rem;">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="West Greens Eco Sanctuary" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: #34d399;"><i class="bi bi-flower1"></i> Phase II • Eco-Belt</span>
+                    <span class="property-price-chip">₹8,200/sqft</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0;">West Greens</h3>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">+9.2% CAGR</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6;">
+                    Low-density master-planned eco-sanctuary with clean air, expansive botanical gardens, and solar infrastructure.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Transit Score</div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-main);">7.9 / 10</div>
+                    </div>
+                    <a href="/predict?location=West+Greens&area=4200" class="btn btn-primary btn-sm">
+                        Appraise Here →
+                    </a>
+                </div>
+            </div>
+
+            <!-- East Expressway -->
+            <div class="glass-card corridor-card" style="padding: 1.25rem;">
+                <div class="property-thumb-wrap">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="East Expressway Modern Villa" class="property-thumb-img" loading="lazy">
+                    <span class="property-thumb-badge" style="color: #fca5a5;"><i class="bi bi-speedometer2"></i> Phase I • Growth Node</span>
+                    <span class="property-price-chip">₹6,800/sqft</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0;">East Expressway</h3>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">+12.2% CAGR</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6;">
+                    High-alpha speculative growth corridor favored by long-term capital appreciation investors and upcoming metro lines.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Transit Score</div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-main);">7.2 / 10</div>
+                    </div>
+                    <a href="/predict?location=East+Expressway&area=5000" class="btn btn-primary btn-sm">
+                        Appraise Here →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 3-Step Human Journey -->
+<section style="padding: 4rem 0; border-top: 1px solid var(--border-glass);">
+    <div class="container">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 3rem;">
+            <span class="hero-pill" style="margin-bottom: 0.5rem;"><i class="bi bi-clock-history"></i> Simple Process</span>
+            <h2 style="font-size: 2.3rem; font-weight: 800; color: var(--text-main);">How It Works in 3 Easy Steps</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">
+                From property specifications to an executive valuation report in under 10 seconds.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div class="glass-card" style="position: relative;">
+                <div style="font-size: 2rem; font-weight: 900; color: var(--text-dim); position: absolute; top: 1.5rem; right: 1.5rem; opacity: 0.3;">01</div>
+                <div style="width: 46px; height: 46px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem;">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">1. Enter Dimensions</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    Specify carpet area, bedroom count, ensuite bathrooms, stories, and luxury amenities with intuitive step controls.
+                </p>
+            </div>
+
+            <div class="glass-card" style="position: relative;">
+                <div style="font-size: 2rem; font-weight: 900; color: var(--text-dim); position: absolute; top: 1.5rem; right: 1.5rem; opacity: 0.3;">02</div>
+                <div style="width: 46px; height: 46px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem;">
+                    <i class="bi bi-bar-chart-steps"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">2. Comps Synthesis</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    Our engine benchmarks your home against 545+ real sales in the same micro-market, factoring in road access and amenities.
+                </p>
+            </div>
+
+            <div class="glass-card" style="position: relative;">
+                <div style="font-size: 2rem; font-weight: 900; color: var(--text-dim); position: absolute; top: 1.5rem; right: 1.5rem; opacity: 0.3;">03</div>
+                <div style="width: 46px; height: 46px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem;">
+                    <i class="bi bi-award-fill"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">3. Receive Dossier</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    Instantly view your certified 3-tier valuation, monthly rental yield, surveyor memo, pros & cons, and 5-year growth chart.
+                </p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;">
+            <a href="/predict" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.1rem; border-radius: var(--radius-full);">
+                <i class="bi bi-lightning-charge-fill"></i> Launch Property Valuation Studio →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Customer Care & Contact Us Section -->
+<section id="customer-care" style="padding: 5rem 0; border-top: 1px solid var(--border-glass); background: var(--bg-glass);">
+    <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 3.5rem;">
+            <span class="hero-pill" style="margin-bottom: 0.5rem;"><i class="bi bi-headset text-gold"></i> Client Concierge & Support</span>
+            <h2 style="font-size: 2.4rem; font-weight: 850; letter-spacing: -0.02em; color: var(--text-main);">
+                Customer Care & Valuation Advisory Desk
+            </h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7;">
+                Connect with our senior chartered valuation consultants for appraisal audits, customized comps analysis, 
+                or instant real estate advisory. Average response time: <strong>under 15 minutes</strong>.
+            </p>
+        </div>
+
+        <!-- 4 Helpdesk Priority Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-bottom: 3.5rem;">
+            
+            <div class="glass-card" style="padding: 1.75rem; text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem;">
+                    <i class="bi bi-telephone-inbound-fill"></i>
+                </div>
+                <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">Advisory Hotline</h4>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--gold); margin: 6px 0;">+91 (080) 4567-8900</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Direct priority phone desk (9 AM - 8 PM IST)</div>
+            </div>
+
+            <div class="glass-card" style="padding: 1.75rem; text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem;">
+                    <i class="bi bi-whatsapp"></i>
+                </div>
+                <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">WhatsApp Valuation Desk</h4>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--accent); margin: 6px 0;">+91 98765 43210</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Instant comps & verification (24/7)</div>
+            </div>
+
+            <div class="glass-card" style="padding: 1.75rem; text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem;">
+                    <i class="bi bi-envelope-check-fill"></i>
+                </div>
+                <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">Official Appraisal Email</h4>
+                <div style="font-size: 0.95rem; font-weight: 800; color: var(--primary-light); margin: 6px 0;">concierge@urbanvaluate.ai</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Audits, loans & certified dossiers</div>
+            </div>
+
+            <div class="glass-card" style="padding: 1.75rem; text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-luxury); color: #c084fc; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem;">
+                    <i class="bi bi-chat-quote-fill"></i>
+                </div>
+                <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">24/7 AI Concierge Desk</h4>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('advisorFloatingBtn').click()" style="margin: 6px 0; width: 100%;">
+                    Ask Aarav Now →
+                </button>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Instant market intelligence</div>
+            </div>
+
+        </div>
+
+        <!-- Contact Us Interactive Form Box -->
+        <div class="glass-card" style="padding: 2.75rem; max-width: 920px; margin: 0 auto; border-color: var(--border-luxury);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <span class="preset-badge"><i class="bi bi-envelope-paper"></i> Contact Us</span>
+                    <h3 style="font-size: 1.6rem; font-weight: 850; color: var(--text-main); margin-top: 4px;">
+                        Send a Valuation or Customer Support Inquiry
+                    </h3>
+                </div>
+                <a href="/contact" class="btn btn-secondary btn-sm">
+                    Open Dedicated Support Page →
+                </a>
+            </div>
+
+            <!-- Inline Success Alert -->
+            <div id="homeContactSuccess" style="display: none; background: rgba(16, 185, 129, 0.08); border: 1px solid var(--accent); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="bi bi-patch-check-fill text-accent" style="font-size: 1.3rem;"></i>
+                    <strong style="color: var(--accent);">Inquiry Successfully Dispatched!</strong>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-main); margin: 6px 0 0;" id="homeContactSuccessMsg"></p>
+            </div>
+
+            <form id="homeContactForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                    <div>
+                        <label for="homeName" style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+                            <i class="bi bi-person text-gold me-1"></i> Full Name *
+                        </label>
+                        <input type="text" class="form-control" id="homeName" required placeholder="e.g. Ananya Patel">
+                    </div>
+                    <div>
+                        <label for="homeEmail" style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+                            <i class="bi bi-envelope text-primary me-1"></i> Email Address *
+                        </label>
+                        <input type="email" class="form-control" id="homeEmail" required placeholder="ananya@example.com">
+                    </div>
+                    <div>
+                        <label for="homePhone" style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+                            <i class="bi bi-telephone text-accent me-1"></i> Mobile / WhatsApp
+                        </label>
+                        <input type="tel" class="form-control" id="homePhone" placeholder="+91 98765 43210">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="homeMsg" style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+                        <i class="bi bi-chat-dots text-gold me-1"></i> How can our senior valuation advisory desk assist you? *
+                    </label>
+                    <textarea class="form-control" id="homeMsg" rows="3" required placeholder="Describe your property specifications (sq ft, BHK, corridor) or specific questions regarding valuation, comps, bank loan appraisals, or investment ROI..."></textarea>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div style="font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+                        <i class="bi bi-shield-check text-accent"></i> 100% confidential • 15-minute response SLA
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="homeContactBtn" style="padding: 14px 28px; border-radius: var(--radius-md); font-size: 1rem;">
+                        <i class="bi bi-send-fill"></i> Submit Support Inquiry →
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

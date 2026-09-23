@@ -1,0 +1,23 @@
+[
+  "area",
+  "bedrooms",
+  "bathrooms",
+  "stories",
+  "parking",
+  "mainroad",
+  "guestroom",
+  "basement",
+  "hotwaterheating",
+  "airconditioning",
+  "prefarea",
+  "furnishingstatus_code",
+  "total_rooms",
+  "bath_bed_ratio",
+  "amenity_score",
+  "loc_Downtown Central",
+  "loc_East Expressway",
+  "loc_Riverside Bay",
+  "loc_Suburban North",
+  "loc_Tech Park Cyber City",
+  "loc_West Greens"
+]

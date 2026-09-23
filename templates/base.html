@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="obsidian-gold">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}House Price Prediction System | AI Real Estate Valuation{% endblock %}</title>
+    <meta name="description" content="A modern machine learning-powered real estate valuation platform built for B.Tech CSE (Artificial Intelligence) major project.">
+    
+    <!-- Pre-render theme persistence (prevents flash of default theme) -->
+    <script>
+        (function() {
+            var saved = localStorage.getItem('hp_luxury_theme') || 'obsidian-gold';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    
+    <!-- Stylesheets with Cache Busting -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=20260924_ultramax_v6">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}?v=20260924_ultramax_v6">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="mainNavbar">
+        <div class="nav-container">
+            <a href="/" class="brand-logo" title="UrbanValuate Premier - Home">
+                <div class="logo-icon">
+                    <i class="bi bi-houses-fill"></i>
+                </div>
+                <span class="brand-name">
+                    UrbanValuate <span class="brand-badge">Premier</span>
+                </span>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-menu" id="navMenu">
+                <li>
+                    <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                        <i class="bi bi-house-door"></i> <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/predict" class="nav-link {% if request.path == '/predict' %}active{% endif %}">
+                        <i class="bi bi-calculator"></i> <span>Valuation Studio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard" class="nav-link {% if request.path == '/dashboard' %}active{% endif %}">
+                        <i class="bi bi-graph-up-arrow"></i> <span>Market Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/docs" class="nav-link {% if request.path == '/docs' %}active{% endif %}">
+                        <i class="bi bi-journal-check"></i> <span>Methodology</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contact" class="nav-link {% if request.path == '/contact' %}active{% endif %}">
+                        <i class="bi bi-headset"></i> <span>Customer Care</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+                <!-- Luxury Theme Selector Dropdown -->
+                <div class="theme-dropdown-wrap">
+                    <button class="theme-menu-btn" id="themeMenuBtn" type="button" aria-expanded="false" title="Switch Ultra-Max Luxury Theme">
+                        <span class="theme-btn-icon" id="activeThemeIcon">👑</span>
+                        <span class="theme-btn-label" id="activeThemeLabel">Obsidian Gold</span>
+                        <i class="bi bi-chevron-down" style="font-size: 0.72rem; opacity: 0.7;"></i>
+                    </button>
+                    <div class="theme-dropdown-menu" id="themeDropdownMenu">
+                        <div class="theme-dropdown-header">Ultra-Max Luxury Themes</div>
+                        <button type="button" class="theme-opt active" data-theme="obsidian-gold">
+                            <span class="theme-swatch swatch-obsidian"></span>
+                            <div class="theme-opt-text">
+                                <strong>Obsidian 24K Gold</strong>
+                                <span>Royal Penthouse Dark</span>
+                            </div>
+                            <i class="bi bi-check2 theme-check"></i>
+                        </button>
+                        <button type="button" class="theme-opt" data-theme="champagne-light">
+                            <span class="theme-swatch swatch-champagne"></span>
+                            <div class="theme-opt-text">
+                                <strong>Champagne Pearl</strong>
+                                <span>Sotheby’s Ivory Light</span>
+                            </div>
+                            <i class="bi bi-check2 theme-check"></i>
+                        </button>
+                        <button type="button" class="theme-opt" data-theme="sapphire-marina">
+                            <span class="theme-swatch swatch-sapphire"></span>
+                            <div class="theme-opt-text">
+                                <strong>Sapphire Marina</strong>
+                                <span>Monaco Oceanic Navy</span>
+                            </div>
+                            <i class="bi bi-check2 theme-check"></i>
+                        </button>
+                        <button type="button" class="theme-opt" data-theme="emerald-royale">
+                            <span class="theme-swatch swatch-emerald"></span>
+                            <div class="theme-opt-text">
+                                <strong>Emerald Royale</strong>
+                                <span>Bel Air Botanical Estate</span>
+                            </div>
+                            <i class="bi bi-check2 theme-check"></i>
+                        </button>
+                        <button type="button" class="theme-opt" data-theme="midnight-amethyst">
+                            <span class="theme-swatch swatch-amethyst"></span>
+                            <div class="theme-opt-text">
+                                <strong>Midnight Amethyst</strong>
+                                <span>Dubai Skyline Cyber Luxe</span>
+                            </div>
+                            <i class="bi bi-check2 theme-check"></i>
+                        </button>
+                    </div>
+                <a href="/predict" class="btn btn-primary btn-sm nav-cta-btn">
+                    <i class="bi bi-lightning-charge-fill"></i> <span class="nav-btn-text">Value Property</span>
+                </a>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button class="nav-toggle-btn" id="navToggleBtn" type="button" aria-label="Toggle navigation menu">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Floating Ultra-Max Theme Dock (Bottom-Left) -->
+    <aside class="floating-theme-dock" id="floatingThemeDock" aria-label="Quick Theme Switcher">
+        <div class="theme-dock-label"><i class="bi bi-palette-fill"></i> Themes</div>
+        <div class="theme-dock-swatches">
+            <button type="button" class="dock-swatch-btn active" data-theme="obsidian-gold" title="👑 Royal Obsidian & 24K Gold">
+                <span class="dock-dot swatch-obsidian"></span>
+            </button>
+            <button type="button" class="dock-swatch-btn" data-theme="champagne-light" title="🏛️ Champagne Pearl (Sotheby's Ivory Light)">
+                <span class="dock-dot swatch-champagne"></span>
+            </button>
+            <button type="button" class="dock-swatch-btn" data-theme="sapphire-marina" title="💎 Sapphire Marina (Monaco Oceanic Navy)">
+                <span class="dock-dot swatch-sapphire"></span>
+            </button>
+            <button type="button" class="dock-swatch-btn" data-theme="emerald-royale" title="🌿 Emerald Royale (Bel Air Botanical Estate)">
+                <span class="dock-dot swatch-emerald"></span>
+            </button>
+            <button type="button" class="dock-swatch-btn" data-theme="midnight-amethyst" title="🔮 Midnight Amethyst (Dubai Cyber Luxe)">
+                <span class="dock-dot swatch-amethyst"></span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Floating Real Estate Market Advisor Chat Widget -->
+    <button class="advisor-floating-btn" id="advisorFloatingBtn" title="Talk to Aarav Mehta - Senior Real Estate Advisor">
+        <div class="advisor-btn-icon">
+            <i class="bi bi-chat-dots-fill"></i>
+        </div>
+        <span>Ask Aarav (Advisor)</span>
+        <div class="advisor-online-badge"></div>
+    </button>
+
+    <!-- Chat Drawer Modal -->
+    <div class="advisor-chat-drawer" id="advisorChatDrawer">
+        <!-- Header -->
+        <div class="advisor-chat-header">
+            <div class="advisor-header-title">
+                <div class="advisor-avatar">
+                    <i class="bi bi-person-fill" style="font-size: 1.4rem;"></i>
+                </div>
+                <div>
+                    <div class="advisor-name">Aarav Mehta</div>
+                    <div class="advisor-role">
+                        <span class="advisor-online-badge" style="width: 7px; height: 7px;"></span> Senior Property Advisor • Online
+                    </div>
+                </div>
+            </div>
+            <div class="advisor-header-actions">
+                <button class="advisor-action-btn" id="advisorResetBtn" title="Reset Conversation">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+                <button class="advisor-action-btn" id="advisorCloseBtn" title="Close Chat">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Active Context Banner -->
+        <div class="advisor-context-banner" id="advisorContextBanner" style="display: none;"></div>
+
+        <!-- Messages Body -->
+        <div class="advisor-messages-body" id="advisorMessagesBody">
+            <div class="advisor-msg assistant">
+                <div class="msg-bubble">
+                    <p>Hello! I am <strong>Aarav Mehta</strong>, your senior real estate advisory consultant.</p>
+                    <p>Whether you're verifying an appraisal price, evaluating micro-market capital growth, comparing localities, or structuring an investment offer, I'm here to advise. Ask me anything below!</p>
+                </div>
+                <div class="msg-time">Just now</div>
+            </div>
+        </div>
+
+        <!-- Quick Suggestion Chips -->
+        <div class="advisor-suggestion-chips">
+            <button type="button" class="advisor-chip" data-prompt="Analyze the currently appraised property">
+                <i class="bi bi-house-check"></i> Analyze current property
+            </button>
+            <button type="button" class="advisor-chip" data-prompt="Compare Cyber City vs Downtown Central">
+                <i class="bi bi-arrow-left-right"></i> Cyber City vs Downtown
+            </button>
+            <button type="button" class="advisor-chip" data-prompt="How can I maximize my rental yield?">
+                <i class="bi bi-cash-stack"></i> Maximize rental returns
+            </button>
+            <button type="button" class="advisor-chip" data-prompt="What are estimated stamp duty and closing costs?">
+                <i class="bi bi-receipt"></i> Stamp duty breakdown
+            </button>
+            <button type="button" class="advisor-chip" data-prompt="Give me key buyer negotiation tactics">
+                <i class="bi bi-shield-check"></i> Negotiation tactics
+            </button>
+        </div>
+
+        <!-- Input Footer -->
+        <div class="advisor-chat-footer">
+            <form class="advisor-input-form" id="advisorForm">
+                <input type="text" class="advisor-input" id="advisorInput" placeholder="Ask Aarav about prices, yields, or localities..." autocomplete="off">
+                <button type="submit" class="advisor-send-btn" title="Send Question">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Structured 4-Column Luxury Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-grid-4">
+                
+                <!-- Col 1: Brand & Overview -->
+                <div>
+                    <div class="brand-logo" style="margin-bottom: 0.85rem;">
+                        <div class="logo-icon" style="width: 34px; height: 34px; font-size: 1.05rem;">
+                            <i class="bi bi-houses-fill"></i>
+                        </div>
+                        <span style="font-size: 1.18rem;">UrbanValuate Premier</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                        Bank-Grade Real Estate Valuation & Investment Intelligence platform synthesized from 545+ verified metropolitan transactions.
+                    </p>
+                    <div style="font-size: 0.8rem; color: var(--gold); font-weight: 700;">
+                        <i class="bi bi-patch-check-fill me-1"></i> B.Tech CSE (AI) Major Project
+                    </div>
+                </div>
+
+                <!-- Col 2: Valuation Services -->
+                <div>
+                    <div class="footer-heading">Valuation Services</div>
+                    <ul class="footer-nav-list">
+                        <li><a href="/predict"><i class="bi bi-chevron-right me-1"></i> Valuation Studio</a></li>
+                        <li><a href="/predict?preset=luxury"><i class="bi bi-chevron-right me-1"></i> Executive Villa Appraisal</a></li>
+                        <li><a href="/dashboard"><i class="bi bi-chevron-right me-1"></i> Empirical Model Benchmark</a></li>
+                        <li><a href="/docs"><i class="bi bi-chevron-right me-1"></i> Methodology & Viva Prep</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Customer Care & Support -->
+                <div>
+                    <div class="footer-heading">Customer Care & Support</div>
+                    <ul class="footer-nav-list">
+                        <li><a href="/contact"><i class="bi bi-headset me-1"></i> Helpdesk & Contact Us</a></li>
+                        <li><a href="tel:+9108045678900"><i class="bi bi-telephone me-1"></i> +91 (080) 4567-8900</a></li>
+                        <li><a href="mailto:concierge@urbanvaluate.ai"><i class="bi bi-envelope me-1"></i> concierge@urbanvaluate.ai</a></li>
+                        <li><a href="javascript:void(0)" onclick="document.getElementById('advisorFloatingBtn').click()"><i class="bi bi-chat-quote me-1"></i> 24/7 AI Concierge Desk</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Verified Model Benchmark -->
+                <div>
+                    <div class="footer-heading">Empirical Accuracy</div>
+                    <div class="footer-stat-card">
+                        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Best Model</div>
+                        <div style="font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin: 2px 0;">Ridge Regression (L2)</div>
+                        <div style="font-size: 0.82rem; color: var(--accent); font-weight: 700;">R² = 0.6590 • MAE = ₹9.60 L</div>
+                    </div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;">
+                        Trained on 545 metropolitan property comps across 6 prime corridors.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="footer-bottom-bar">
+                <div style="font-size: 0.85rem; color: var(--text-muted);">
+                    © 2026 UrbanValuate Premier. Built with Scikit-learn, Flask, and Ultra-Max Luxury Aesthetics.
+                </div>
+                <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
+                    <a href="/contact" style="color: var(--text-muted); text-decoration: none;">Support Desk</a>
+                    <span style="color: var(--border-glass);">•</span>
+                    <a href="/docs" style="color: var(--text-muted); text-decoration: none;">Viva Guide</a>
+                    <span style="color: var(--border-glass);">•</span>
+                    <a href="/dashboard" style="color: var(--text-muted); text-decoration: none;">Analytics</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts with Cache Busting -->
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=20260924_ultramax_v6"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}?v=20260924_ultramax_v6"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
