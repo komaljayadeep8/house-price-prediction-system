@@ -428,6 +428,7 @@ def generate_surveyor_memo(features, predicted_price, loc_profile, financials):
 @app.route('/')
 @app.route('/api/index')
 @app.route('/api/index/')
+@app.route('/api/index.py')
 def home():
     """Renders the landing home page."""
     return render_template('index.html', metrics=model_metrics)
@@ -749,6 +750,16 @@ def api_dataset():
         'total_rows': len(df_dataset),
         'columns': list(df_dataset.columns),
         'data': records
+    })
+
+
+@app.route('/api/debug_env')
+def debug_env():
+    from flask import request
+    return jsonify({
+        'path': request.path,
+        'environ_PATH_INFO': request.environ.get('PATH_INFO'),
+        'headers': {k: v for k, v in request.headers.items() if not k.lower().startswith('authorization')}
     })
 
 @app.route('/api/sample')
