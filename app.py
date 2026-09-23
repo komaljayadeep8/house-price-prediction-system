@@ -425,6 +425,8 @@ def generate_surveyor_memo(features, predicted_price, loc_profile, financials):
 # ----------------- PAGE ROUTES ----------------- #
 
 @app.route('/')
+@app.route('/api/index')
+@app.route('/api/index/')
 def home():
     """Renders the landing home page."""
     return render_template('index.html', metrics=model_metrics)
