@@ -2,13 +2,20 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/static/(.*)",
+      "destination": "/static/"
+    },
+    {
+      "source": "/css/(.*)",
+      "destination": "/css/"
+    },
+    {
+      "source": "/js/(.*)",
+      "destination": "/js/"
+    },
+    {
       "source": "/(.*)",
       "destination": "/api/index"
     }
-  ],
-  "functions": {
-    "api/index.py": {
-      "includeFiles": "{templates/**,static/**,data/**,ml_engine/**}"
-    }
-  }
+  ]
 }
